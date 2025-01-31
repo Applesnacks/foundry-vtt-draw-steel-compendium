@@ -7,7 +7,7 @@
     "verified": "11"
   },
   "manifest": "https://raw.githubusercontent.com/Applesnacks/foundry-vtt-draw-steel-compendium/refs/tags/v0.1/drawsteel-playtest-compendium/module.json",
-  "download": "https://github.com/Applesnacks/foundry-vtt-draw-steel-compendium/archive/refs/tags/v0.1.zip"
+  "download": "https://github.com/Applesnacks/foundry-vtt-draw-steel-compendium/archive/refs/tags/v0.1.zip",
   "packs": [
     {
       "name": "Class_Abilities",
