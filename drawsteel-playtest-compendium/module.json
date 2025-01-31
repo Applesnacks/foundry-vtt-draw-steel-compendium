@@ -1,0 +1,47 @@
+{
+  "id": "drawsteel-playtest-compendium",
+  "title": "DrawSteel Playtest Compendium",
+  "version": "1.0.0",
+  "compatibility": {
+    "minimum": "11",
+    "verified": "11"
+  },
+  "packs": [
+    {
+      "name": "Class_Abilities",
+      "label": "Class_Abilities",
+      "path": "packs/Class_Abilities",
+      "type": "Item",
+      "ownership": {
+        "PLAYER": "OBSERVER",
+        "ASSISTANT": "OWNER"
+      },
+      "system": "custom-system-builder",
+      "flags": {}
+    },
+    {
+      "name": "Monster_Abilities",
+      "label": "Monster_Abilities",
+      "path": "packs/Monster_Abilities",
+      "type": "Item",
+      "ownership": {
+        "PLAYER": "OBSERVER",
+        "ASSISTANT": "OWNER"
+      },
+      "system": "custom-system-builder",
+      "flags": {}
+    },
+    {
+      "name": "Monsters",
+      "label": "Monsters",
+      "path": "packs/Monsters",
+      "type": "Actor",
+      "ownership": {
+        "PLAYER": "OBSERVER",
+        "ASSISTANT": "OWNER"
+      },
+      "system": "custom-system-builder",
+      "flags": {}
+    }
+  ]
+}

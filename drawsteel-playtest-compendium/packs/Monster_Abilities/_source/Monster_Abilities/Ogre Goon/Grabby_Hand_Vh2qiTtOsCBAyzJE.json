@@ -1,0 +1,483 @@
+{
+    "name":  "Grabby Hand",
+    "type":  "equippableItem",
+    "img":  "icons/svg/book.svg",
+    "system":  {
+                   "hidden":  [
+
+                              ],
+                   "header":  {
+                                  "contents":  [
+
+                                               ],
+                                  "key":  "custom_header",
+                                  "cssClass":  "",
+                                  "role":  0,
+                                  "permission":  0,
+                                  "tooltip":  "",
+                                  "visibilityFormula":  "",
+                                  "type":  "panel",
+                                  "flow":  "vertical",
+                                  "align":  "",
+                                  "collapsible":  false,
+                                  "defaultCollapsed":  true,
+                                  "title":  "",
+                                  "titleStyle":  "default"
+                              },
+                   "body":  {
+                                "contents":  [
+                                                 {
+                                                     "key":  "",
+                                                     "cssClass":  "",
+                                                     "role":  "0",
+                                                     "permission":  "0",
+                                                     "tooltip":  "",
+                                                     "visibilityFormula":  "",
+                                                     "type":  "panel",
+                                                     "contents":  [
+                                                                      {
+                                                                          "key":  "",
+                                                                          "cssClass":  "",
+                                                                          "role":  "0",
+                                                                          "permission":  "0",
+                                                                          "tooltip":  "",
+                                                                          "visibilityFormula":  "",
+                                                                          "type":  "panel",
+                                                                          "contents":  [
+
+                                                                                       ],
+                                                                          "flow":  "vertical",
+                                                                          "align":  "center",
+                                                                          "collapsible":  false,
+                                                                          "defaultCollapsed":  false,
+                                                                          "title":  "",
+                                                                          "titleStyle":  "default"
+                                                                      },
+                                                                      {
+                                                                          "key":  "_ability_roll_dice",
+                                                                          "cssClass":  "",
+                                                                          "role":  "0",
+                                                                          "permission":  "0",
+                                                                          "tooltip":  "",
+                                                                          "visibilityFormula":  "",
+                                                                          "type":  "label",
+                                                                          "size":  "full-size",
+                                                                          "icon":  "dice-d10",
+                                                                          "value":  "Roll!",
+                                                                          "prefix":  "",
+                                                                          "suffix":  "",
+                                                                          "rollMessage":  "${fetchFromActor(escapeQuotes('attached'),'resource_current') < _ability_cost ? notify('error','Not enough VP' : false)}$\n\n%{\nif (${_ability_cost}$ <= ${fetchFromActor(escapeQuotes('attached'),'resource_current')}$) {\n  if ('${escapeQuotes(_ability_tier_1)}$' != '') {\n    return game.macros.getName('Power Roll!').execute({\n    character_name:'${escapeQuotes(fetchFromActor(escapeQuotes('attached'),'name'))}$',\n    defaultSituationalBonus:0,\n    ability_title:'${escapeQuotes(name)}$',\n    resource_current:${fetchFromActor(escapeQuotes('attached'),'resource_current')}$,\n    tier_1_result:'${escapeQuotes(_ability_tier_1)}$',\n    tier_2_result:'${escapeQuotes(_ability_tier_2)}$',\n    tier_3_result:'${escapeQuotes(_ability_tier_3)}$',\n    power_effect:'${escapeQuotes(_ability_power_effect)}$',\n    defaultAbility:'${_ability_power_roll}$',\n    might_score:${fetchFromActor(escapeQuotes('attached'),'might_score')}$,\n    agility_score:${fetchFromActor(escapeQuotes('attached'),'agility_score')}$,\n    reason_score:${fetchFromActor(escapeQuotes('attached'),'reason_score')}$,\n    intuition_score:${fetchFromActor(escapeQuotes('attached'),'intuition_score')}$,\n    presence_score:${fetchFromActor(escapeQuotes('attached'),'presence_score')}$\n    });\n  } else {\n\n    rollMode = game.settings.get(\"core\", \"rollMode\");\n      gmUserIds = game.users.filter(user => user.isGM).map(user => user.id);\n      messageData = {\n        flavor: `<h2><strong>${escapeQuotes(name)}$</h2></strong>`,\n        user: game.user._id,\n        speaker: {\n          alias: '${escapeQuotes(fetchFromActor(escapeQuotes('attached'),'name'))}$',\n          actor: game.actors.getName('${escapeQuotes(fetchFromActor(escapeQuotes('attached'),'name'))}$')\n        },\n        content: '${escapeQuotes(_ability_power_effect)}$'\n      };\n      \n      if (rollMode === \"gmroll\" || rollMode === \"blindroll\" || rollMode === \"selfroll\") {\n        messageData.whisper = gmUserIds;\n      } else if (rollMode === \"publicroll\") {\n        messageData.whisper = [];\n      };\n      \n      ChatMessage.create(messageData);\n\n  }\n}\n}%",
+                                                                          "altRollMessage":  "",
+                                                                          "rollMessageToChat":  false,
+                                                                          "altRollMessageToChat":  false,
+                                                                          "style":  "button"
+                                                                      },
+                                                                      {
+                                                                          "key":  "",
+                                                                          "cssClass":  "",
+                                                                          "role":  "0",
+                                                                          "permission":  "0",
+                                                                          "tooltip":  "",
+                                                                          "visibilityFormula":  "",
+                                                                          "type":  "panel",
+                                                                          "contents":  [
+
+                                                                                       ],
+                                                                          "flow":  "vertical",
+                                                                          "align":  "center",
+                                                                          "collapsible":  false,
+                                                                          "defaultCollapsed":  false,
+                                                                          "title":  "",
+                                                                          "titleStyle":  "default"
+                                                                      },
+                                                                      {
+                                                                          "key":  "_ability_cost",
+                                                                          "cssClass":  "",
+                                                                          "role":  "0",
+                                                                          "permission":  "0",
+                                                                          "tooltip":  "",
+                                                                          "visibilityFormula":  "",
+                                                                          "type":  "numberField",
+                                                                          "label":  "Cost:",
+                                                                          "defaultValue":  "0",
+                                                                          "size":  "full-size",
+                                                                          "allowDecimal":  false,
+                                                                          "minVal":  "",
+                                                                          "maxVal":  "",
+                                                                          "allowRelative":  false,
+                                                                          "showControls":  false,
+                                                                          "controlsStyle":  "hover",
+                                                                          "inputStyle":  "text"
+                                                                      }
+                                                                  ],
+                                                     "flow":  "grid-5",
+                                                     "align":  "right",
+                                                     "collapsible":  false,
+                                                     "defaultCollapsed":  false,
+                                                     "title":  "",
+                                                     "titleStyle":  "default"
+                                                 },
+                                                 {
+                                                     "key":  "",
+                                                     "cssClass":  "",
+                                                     "role":  "0",
+                                                     "permission":  "0",
+                                                     "tooltip":  "",
+                                                     "visibilityFormula":  "",
+                                                     "type":  "panel",
+                                                     "contents":  [
+                                                                      {
+                                                                          "key":  "_ability_keywords",
+                                                                          "cssClass":  "",
+                                                                          "role":  "0",
+                                                                          "permission":  "0",
+                                                                          "tooltip":  "",
+                                                                          "visibilityFormula":  "",
+                                                                          "type":  "textField",
+                                                                          "label":  "Keywords:",
+                                                                          "defaultValue":  "",
+                                                                          "size":  "full-size",
+                                                                          "charList":  "",
+                                                                          "autocomplete":  ""
+                                                                      },
+                                                                      {
+                                                                          "key":  "_ability_type",
+                                                                          "cssClass":  "",
+                                                                          "role":  "0",
+                                                                          "permission":  "0",
+                                                                          "tooltip":  "",
+                                                                          "visibilityFormula":  "",
+                                                                          "type":  "select",
+                                                                          "label":  "Type:",
+                                                                          "defaultValue":  "",
+                                                                          "size":  "full-size",
+                                                                          "selectedOptionType":  "custom",
+                                                                          "options":  [
+                                                                                          {
+                                                                                              "key":  "Action",
+                                                                                              "value":  "Action"
+                                                                                          },
+                                                                                          {
+                                                                                              "key":  "Maneuver",
+                                                                                              "value":  "Maneuver"
+                                                                                          },
+                                                                                          {
+                                                                                              "key":  "Free Maneuver",
+                                                                                              "value":  "Free Maneuver"
+                                                                                          },
+                                                                                          {
+                                                                                              "key":  "Triggered",
+                                                                                              "value":  "Triggered"
+                                                                                          },
+                                                                                          {
+                                                                                              "key":  "Free Triggered",
+                                                                                              "value":  "Free Triggered"
+                                                                                          },
+                                                                                          {
+                                                                                              "key":  "Villain Action",
+                                                                                              "value":  "Villain Action"
+                                                                                          }
+                                                                                      ]
+                                                                      },
+                                                                      {
+                                                                          "key":  "_ability_distance",
+                                                                          "cssClass":  "",
+                                                                          "role":  "0",
+                                                                          "permission":  "0",
+                                                                          "tooltip":  "",
+                                                                          "visibilityFormula":  "",
+                                                                          "type":  "textField",
+                                                                          "label":  "Distance:",
+                                                                          "defaultValue":  "",
+                                                                          "size":  "full-size",
+                                                                          "charList":  "",
+                                                                          "autocomplete":  ""
+                                                                      },
+                                                                      {
+                                                                          "key":  "_ability_target",
+                                                                          "cssClass":  "",
+                                                                          "role":  "0",
+                                                                          "permission":  "0",
+                                                                          "tooltip":  "",
+                                                                          "visibilityFormula":  "",
+                                                                          "type":  "textField",
+                                                                          "label":  "Target:",
+                                                                          "defaultValue":  "",
+                                                                          "size":  "full-size",
+                                                                          "charList":  "",
+                                                                          "autocomplete":  ""
+                                                                      },
+                                                                      {
+                                                                          "key":  "_ability_power_roll",
+                                                                          "cssClass":  "",
+                                                                          "role":  "0",
+                                                                          "permission":  "0",
+                                                                          "tooltip":  "",
+                                                                          "visibilityFormula":  "",
+                                                                          "type":  "select",
+                                                                          "label":  "Power Roll + ",
+                                                                          "defaultValue":  "Might",
+                                                                          "size":  "m-large",
+                                                                          "selectedOptionType":  "custom",
+                                                                          "options":  [
+                                                                                          {
+                                                                                              "key":  "Might",
+                                                                                              "value":  "Might"
+                                                                                          },
+                                                                                          {
+                                                                                              "key":  "Agility",
+                                                                                              "value":  "Agility"
+                                                                                          },
+                                                                                          {
+                                                                                              "key":  "Reason",
+                                                                                              "value":  "Reason"
+                                                                                          },
+                                                                                          {
+                                                                                              "key":  "Intuition",
+                                                                                              "value":  "Intuition"
+                                                                                          },
+                                                                                          {
+                                                                                              "key":  "Presence",
+                                                                                              "value":  "Presence"
+                                                                                          }
+                                                                                      ]
+                                                                      },
+                                                                      {
+                                                                          "key":  "_ability_trigger",
+                                                                          "cssClass":  "",
+                                                                          "role":  "0",
+                                                                          "permission":  "0",
+                                                                          "tooltip":  "",
+                                                                          "visibilityFormula":  "or(equalText(_ability_type,'Triggered'),equalText(_ability_type,'Free Triggered'))",
+                                                                          "type":  "textField",
+                                                                          "label":  "Trigger:",
+                                                                          "defaultValue":  "",
+                                                                          "size":  "full-size",
+                                                                          "charList":  "",
+                                                                          "autocomplete":  ""
+                                                                      },
+                                                                      {
+                                                                          "key":  "_ability_villain_round",
+                                                                          "cssClass":  "",
+                                                                          "role":  "0",
+                                                                          "permission":  "0",
+                                                                          "tooltip":  "",
+                                                                          "visibilityFormula":  "equalText(_ability_type,'Villain Action')",
+                                                                          "type":  "textField",
+                                                                          "label":  "Round:",
+                                                                          "defaultValue":  "",
+                                                                          "size":  "full-size",
+                                                                          "charList":  "",
+                                                                          "autocomplete":  ""
+                                                                      }
+                                                                  ],
+                                                     "flow":  "grid-2",
+                                                     "align":  "center",
+                                                     "collapsible":  false,
+                                                     "defaultCollapsed":  false,
+                                                     "title":  "",
+                                                     "titleStyle":  "default"
+                                                 },
+                                                 {
+                                                     "key":  "",
+                                                     "cssClass":  "",
+                                                     "role":  "0",
+                                                     "permission":  "0",
+                                                     "tooltip":  "",
+                                                     "visibilityFormula":  "",
+                                                     "type":  "panel",
+                                                     "contents":  [
+                                                                      {
+                                                                          "key":  "",
+                                                                          "cssClass":  "",
+                                                                          "role":  "0",
+                                                                          "permission":  "0",
+                                                                          "tooltip":  "",
+                                                                          "visibilityFormula":  "",
+                                                                          "type":  "label",
+                                                                          "size":  "full-size",
+                                                                          "icon":  "",
+                                                                          "value":  "<11",
+                                                                          "prefix":  "",
+                                                                          "suffix":  "",
+                                                                          "rollMessage":  "",
+                                                                          "altRollMessage":  "",
+                                                                          "rollMessageToChat":  true,
+                                                                          "altRollMessageToChat":  true,
+                                                                          "style":  "label"
+                                                                      },
+                                                                      {
+                                                                          "key":  "_ability_tier_1",
+                                                                          "cssClass":  "",
+                                                                          "role":  "0",
+                                                                          "permission":  "0",
+                                                                          "tooltip":  "",
+                                                                          "visibilityFormula":  "",
+                                                                          "type":  "textField",
+                                                                          "label":  "",
+                                                                          "defaultValue":  "",
+                                                                          "size":  "full-size",
+                                                                          "charList":  "",
+                                                                          "autocomplete":  ""
+                                                                      },
+                                                                      {
+                                                                          "key":  "",
+                                                                          "cssClass":  "",
+                                                                          "role":  "0",
+                                                                          "permission":  "0",
+                                                                          "tooltip":  "",
+                                                                          "visibilityFormula":  "",
+                                                                          "type":  "label",
+                                                                          "size":  "full-size",
+                                                                          "icon":  "",
+                                                                          "value":  "12-16",
+                                                                          "prefix":  "",
+                                                                          "suffix":  "",
+                                                                          "rollMessage":  "",
+                                                                          "altRollMessage":  "",
+                                                                          "rollMessageToChat":  true,
+                                                                          "altRollMessageToChat":  true,
+                                                                          "style":  "label"
+                                                                      },
+                                                                      {
+                                                                          "key":  "_ability_tier_2",
+                                                                          "cssClass":  "",
+                                                                          "role":  "0",
+                                                                          "permission":  "0",
+                                                                          "tooltip":  "",
+                                                                          "visibilityFormula":  "",
+                                                                          "type":  "textField",
+                                                                          "label":  "",
+                                                                          "defaultValue":  "",
+                                                                          "size":  "full-size",
+                                                                          "charList":  "",
+                                                                          "autocomplete":  ""
+                                                                      },
+                                                                      {
+                                                                          "key":  "",
+                                                                          "cssClass":  "",
+                                                                          "role":  "0",
+                                                                          "permission":  "0",
+                                                                          "tooltip":  "",
+                                                                          "visibilityFormula":  "",
+                                                                          "type":  "label",
+                                                                          "size":  "full-size",
+                                                                          "icon":  "",
+                                                                          "value":  "17+",
+                                                                          "prefix":  "",
+                                                                          "suffix":  "",
+                                                                          "rollMessage":  "",
+                                                                          "altRollMessage":  "",
+                                                                          "rollMessageToChat":  true,
+                                                                          "altRollMessageToChat":  true,
+                                                                          "style":  "label"
+                                                                      },
+                                                                      {
+                                                                          "key":  "_ability_tier_3",
+                                                                          "cssClass":  "",
+                                                                          "role":  "0",
+                                                                          "permission":  "0",
+                                                                          "tooltip":  "",
+                                                                          "visibilityFormula":  "",
+                                                                          "type":  "textField",
+                                                                          "label":  "",
+                                                                          "defaultValue":  "",
+                                                                          "size":  "full-size",
+                                                                          "charList":  "",
+                                                                          "autocomplete":  ""
+                                                                      }
+                                                                  ],
+                                                     "flow":  "grid-2",
+                                                     "align":  "center",
+                                                     "collapsible":  false,
+                                                     "defaultCollapsed":  false,
+                                                     "title":  "",
+                                                     "titleStyle":  "default"
+                                                 },
+                                                 {
+                                                     "key":  "_ability_power_effect",
+                                                     "cssClass":  "",
+                                                     "role":  "0",
+                                                     "permission":  "0",
+                                                     "tooltip":  "",
+                                                     "visibilityFormula":  "",
+                                                     "type":  "textField",
+                                                     "label":  "Effect",
+                                                     "defaultValue":  "",
+                                                     "size":  "full-size",
+                                                     "charList":  "",
+                                                     "autocomplete":  ""
+                                                 }
+                                             ],
+                                "key":  "custom_body",
+                                "cssClass":  "",
+                                "role":  0,
+                                "permission":  0,
+                                "tooltip":  "",
+                                "visibilityFormula":  "",
+                                "type":  "panel",
+                                "flow":  "vertical",
+                                "align":  "",
+                                "collapsible":  false,
+                                "defaultCollapsed":  true,
+                                "title":  "",
+                                "titleStyle":  "default"
+                            },
+                   "display":  {
+                                   "width":  "600",
+                                   "height":  "600",
+                                   "fix_size":  false,
+                                   "pp_width":  "64",
+                                   "pp_height":  "64"
+                               },
+                   "template":  "bA49vDvP2tTJ2RhG",
+                   "props":  {
+                                 "name":  "Grabby Hand",
+                                 "_ability_cost":  "0",
+                                 "_ability_power_roll":  "Might",
+                                 "_ability_keywords":  "Attack,Melee,Weapon",
+                                 "_ability_type":  "Maneuver",
+                                 "_ability_distance":  "Melee 1",
+                                 "_ability_target":  "1 creature or object",
+                                 "_ability_trigger":  null,
+                                 "_ability_villain_round":  "",
+                                 "_ability_tier_1":  "5 damage",
+                                 "_ability_tier_2":  "9 damage; grabbed",
+                                 "_ability_tier_3":  "12 damage; grabbed",
+                                 "_ability_power_effect":  "The goon can only have one target grabbed at a time. | 1 Malice: The target has a bane on escaping the grab while the goon crushes the target in their hand. "
+                             },
+                   "modifiers":  [
+
+                                 ],
+                   "unique":  false,
+                   "uniqueId":  "Vh2qiTtOsCBAyzJE",
+                   "templateSystemUniqueVersion":  3816323372
+               },
+    "effects":  [
+
+                ],
+    "folder":  "dY5tDCvBIsNkAMV6",
+    "ownership":  {
+                      "default":  0,
+                      "hjxSAI42dWh9BYfq":  3
+                  },
+    "flags":  {
+                  "custom-system-builder":  {
+                                                "version":  "3.2.5"
+                                            },
+                  "core":  {
+
+                           }
+              },
+    "_stats":  {
+                   "systemId":  "custom-system-builder",
+                   "systemVersion":  "3.2.5",
+                   "coreVersion":  "11.315",
+                   "createdTime":  1738287205061,
+                   "modifiedTime":  1738289684050,
+                   "lastModifiedBy":  "hjxSAI42dWh9BYfq"
+               },
+    "_id":  "Vh2qiTtOsCBAyzJE",
+    "sort":  0,
+    "_key":  "!items!Vh2qiTtOsCBAyzJE"
+}
